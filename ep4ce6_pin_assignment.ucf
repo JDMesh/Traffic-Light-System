@@ -1,0 +1,43 @@
+# RZ301 EP4CE6 Development Board - Pin Assignment
+# Traffic Light Controller with 7-Segment Display
+
+# ===== System Clock and Reset =====
+NET "clk" LOC = E3;           # 50MHz Clock Input (CLK0)
+NET "rst_btn" LOC = A6;        # Reset Button (Active LOW)
+
+# ===== Traffic Light LEDs (with 220 Ohm resistors) =====
+NET "RED1" LOC = 3;            # LED0 - Direction 1 Red
+NET "GREEN1" LOC = 2;          # LED1 - Direction 1 Green
+NET "YELLOW1" LOC = 141;       # LED3 - Yellow (shared)
+NET "RED2" LOC = 1;            # LED2 - Direction 2 Red
+NET "GREEN2" LOC = 136;        # GPIO - Direction 2 Green
+
+# ===== 7-Segment Display (Common Anode) =====
+# Segment pins (a, b, c, d, e, f, g)
+NET "seg[0]" LOC = D2;         # Segment a
+NET "seg[1]" LOC = E2;         # Segment b
+NET "seg[2]" LOC = D1;         # Segment c
+NET "seg[3]" LOC = C1;         # Segment d
+NET "seg[4]" LOC = B1;         # Segment e
+NET "seg[5]" LOC = A1;         # Segment f
+NET "seg[6]" LOC = F2;         # Segment g
+
+# Digit select pins (DIG1, DIG2, DIG3, DIG4)
+NET "dig[0]" LOC = G2;         # DIG1 (Tens digit)
+NET "dig[1]" LOC = H2;         # DIG2 (Ones digit)
+NET "dig[2]" LOC = H1;         # DIG3 (Unused)
+NET "dig[3]" LOC = G1;         # DIG4 (Unused)
+
+# ===== I/O Standards =====
+NET "clk" IOSTANDARD = LVCMOS33;
+NET "rst_btn" IOSTANDARD = LVCMOS33;
+NET "RED1" IOSTANDARD = LVCMOS33;
+NET "GREEN1" IOSTANDARD = LVCMOS33;
+NET "YELLOW1" IOSTANDARD = LVCMOS33;
+NET "RED2" IOSTANDARD = LVCMOS33;
+NET "GREEN2" IOSTANDARD = LVCMOS33;
+NET "seg[*]" IOSTANDARD = LVCMOS33;
+NET "dig[*]" IOSTANDARD = LVCMOS33;
+
+# ===== Timing Constraints =====
+NET "clk" PERIOD = 20 ns HIGH 10 ns;  # 50MHz = 20ns period
